@@ -15,10 +15,22 @@ const removepreviousChildNodes=()=> {
     }
 }
 
+const removePreviousLayout=()=> {
+    while(outputContainer1.childNodes.length) {
+        outputContainer1.removeChild(outputContainer1.childNodes[0])
+    }
+
+    while(outputContainer2.childNodes.length) {
+        outputContainer2.removeChild(outputContainer2.childNodes[0])
+    }
+}
+
 
 const generateInputColumnTable=()=> {
 
     removepreviousChildNodes();
+
+    removePreviousLayout();
 
     const rowsCount=parseInt(rowInput.value)
     console.log(rowsCount)
@@ -48,27 +60,40 @@ const generateInputColumnTable=()=> {
 
 
 const generateLayoutFromTable=()=> {
+
+    removePreviousLayout()
+
     const rowsCount=parseInt(rowInput.value)
 
+
+    let leftBlockMax=0;
+    for(let row=0;row<rowsCount;row++) {
+        const block1Count=document.getElementById('input1-'+(row+1)).value;
+        leftBlockMax=Math.max(block1Count, leftBlockMax);
+    }
+
+    let rightBlockMax=0;
+    for(let row=0;row<rowsCount;row++) {
+        const block2Count=document.getElementById('input2-'+(row+1)).value;
+        rightBlockMax=Math.max(block2Count, rightBlockMax);
+    }
 
     for(let row=0;row<rowsCount;row++) {
 
         const block1Count=document.getElementById('input1-'+(row+1)).value;
         const radius = 400-row*50;  
-        
 
-
-        for (let i = 0; i < block1Count; i++) {
+        for (let i = 0; i <block1Count ; i++) {
            // -175 to -105 deg
             const centerX = 400;
             const centerY = 700; 
-            const angle = (Math.PI/2) * (i / (block1Count - 1)) - (Math.PI);  
+            const angle = (-Math.PI/2) * (i / (leftBlockMax - 1)) - (Math.PI/2); 
             const x = centerX + radius * Math.cos(angle) - 20; 
             const y = centerY + radius * Math.sin(angle) - 20; 
 
             const box = document.createElement("div");
             box.classList.add("box");
-            box.textContent = i + 1;
+            box.textContent = block1Count-i;
             box.style.left = `${x}px`;
             box.style.top = `${y}px`;
 
@@ -83,7 +108,7 @@ const generateLayoutFromTable=()=> {
 
            const centerX = 500;
             const centerY = 700; 
-            const angle = (Math.PI/2) * (i / (block2Count - 1)) - (Math.PI/2);
+            const angle = (Math.PI/2) * (i / (rightBlockMax - 1)) - (Math.PI/2);
             const x = centerX + radius * Math.cos(angle) - 20; 
             const y = centerY + radius * Math.sin(angle) - 20; 
 
