@@ -68,8 +68,6 @@ const generateLayoutTable=()=> {
             const block1Element=document.createElement('div');
             block1Element.classList.add('block1');
             block1Element.setAttribute('class', 'box');
-            //block1Element.style.transform=`rotate(${rotateValue}deg)`;
-
             const x=(block1Count-i)*10;
             const y=(block2Count-i)*10;
             block1Element.style.top=x;
