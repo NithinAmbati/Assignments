@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curved Boxes on a Semicircle</title>
+    <style>
+        .container {
+            width: 300px;
+            height: 150px;
+            position: relative;
+            border-top-left-radius: 150px;
+            border-top-right-radius: 150px;
+            background-color: lightgray;
+            overflow: visible; /* Allow full visibility of boxes */
+        }
+
+        .box {
+            width: 40px;
+            height: 40px;
+            background-color: steelblue;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="semicircle-container"></div>
+
+    <script>
+
+        for(let i=0;i<4;i++) {
+            const container = document.getElementById('semicircle-container');
+            const numBoxes = 12-4*i+i;  
+            const radius = 500-i*80;  
+            const centerX = 500; 
+            const centerY = 500; 
+
+            for (let i = 0; i < numBoxes; i++) {
+                const angle = (Math.PI/2) * (i / (numBoxes - 1)) - (Math.PI)+(Math.PI/36);    
+                const x = centerX + radius * Math.cos(angle) - 20; 
+                const y = centerY + radius * Math.sin(angle) - 20; 
+
+                const box = document.createElement("div");
+                box.classList.add("box");
+                box.textContent = i + 1;
+                box.style.left = `${x}px`;
+                box.style.top = `${y}px`;
+
+                box.style.transform = `rotate(${angle * (180 / Math.PI) + 90}deg)`;
+
+                container.appendChild(box);
+            }
+        }
+
+        
+
+    </script>
+
+    <!-- <script>
+        const container = document.getElementById('semicircle-container');
+        const numBoxes = 10;  // Number of boxes
+        const radius = 200;  // Radius of the semicircle
+        const centerX = 300; // Center of the semicircle (half of container width)
+        const centerY = 300; // Center of the semicircle (equal to height)
+
+        for (let i = 0; i < numBoxes; i++) {
+            // Angle from -90° (leftmost) to +90° (rightmost)
+            const angle = Math.PI * (i / (numBoxes - 1)) - Math.PI;  
+
+            // Calculate positions
+            const x = centerX + radius * Math.cos(angle) - 20; // Adjust for box width
+            const y = centerY + radius * Math.sin(angle) - 20; // Adjust for box height
+
+            const box = document.createElement("div");
+            box.classList.add("box");
+            box.textContent = i + 1;
+            box.style.left = `${x}px`;
+            box.style.top = `${y}px`;
+
+            // Rotate so it stays upright
+            box.style.transform = `rotate(${angle * (180 / Math.PI) + 90}deg)`;
+
+            container.appendChild(box);
+        }
+    </script> -->
+
+</body>
+</html>

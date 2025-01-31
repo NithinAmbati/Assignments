@@ -9,58 +9,32 @@ tr{
 }
 
 
-#generate-layout {
-   margin-right: auto;
-}
-
 
 .box {
-    border: 1px solid black;
-    margin: 10px;
-    padding: 10px;
-    width: 30px;
-    height: 30px;
-    
+    width: 40px;
+    height: 40px;
+    background-color: steelblue;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    border-radius: 5px;
 }
 
 
-#output-container {
+.output-container {
     display: flex;
     flex-direction: row;
-    margin: 10px;
-    column-gap: 10px;
+    justify-content: space-between;
+}
+
+.output-container1{
+    margin-right: 50px;
 }
 
 
-.block1-container {
-    display: flex;
-    flex-direction: column;;
-    width: 50%;;
-}
 
-.block2-container {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-}
-
-.sub-block-container1 {
-    display: flex;
-    position: relative;
-    flex-direction: row;
-    justify-content: flex-end;
-    margin-top: 10px;
-    border-top-left-radius: 100%;
-}
-
-.sub-block-container2 {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    margin-top: 10px;
-    border-top-right-radius: 100%;
-}
 
 
 

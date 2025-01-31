@@ -4,7 +4,9 @@ const rowInput=document.getElementById('rows-count');
 const inputColumnTable=document.getElementById('input-column-table');
 const generateTable=document.getElementById('generate-table');
 const generateLayout=document.getElementById('generate-layout');
-const outputContainer=document.getElementById('output-container');
+const outputContainer1=document.getElementById('output-container1');
+const outputContainer2=document.getElementById('output-container2');
+
 
 
 const removepreviousChildNodes=()=> {
@@ -44,58 +46,66 @@ const generateInputColumnTable=()=> {
 }
 
 
-const generateLayoutTable=()=> {
+
+const generateLayoutFromTable=()=> {
     const rowsCount=parseInt(rowInput.value)
 
-    const block1Container=document.createElement('div');
-    const block2Container=document.createElement('div');
 
-    block1Container.classList.add('block1-container');
-    block2Container.classList.add('block2-container');
+    for(let row=0;row<rowsCount;row++) {
 
-    for(let i=0;i<rowsCount;i++) {
+        const block1Count=document.getElementById('input1-'+(row+1)).value;
+        const radius = 400-row*50;  
         
-        const subBlockContainer1=document.createElement('div');
-        const subBlockContainer2=document.createElement('div');
 
-        subBlockContainer1.classList.add('sub-block-container1');
-        subBlockContainer2.classList.add('sub-block-container2');
 
-        const block1Count=document.getElementById('input1-'+(i+1)).value;
-        const block2Count=document.getElementById('input2-'+(i+1)).value;
-        
-        for(let i=0;i<block1Count;i++) {
-            const block1Element=document.createElement('div');
-            block1Element.classList.add('block1');
-            block1Element.setAttribute('class', 'box');
-            const x=(block1Count-i)*10;
-            const y=(block2Count-i)*10;
-            block1Element.style.top=x;
-            block1Element.style.left=y;
+        for (let i = 0; i < block1Count; i++) {
+           // -175 to -105 deg
+            const centerX = 400;
+            const centerY = 700; 
+            const angle = (Math.PI/2) * (i / (block1Count - 1)) - (Math.PI);  
+            const x = centerX + radius * Math.cos(angle) - 20; 
+            const y = centerY + radius * Math.sin(angle) - 20; 
 
-            block1Element.innerText=i+1;
-            subBlockContainer1.appendChild(block1Element);
-        }
-        
-        for(let i=0;i<block2Count;i++) {
-            const block2Element=document.createElement('div');
-            block2Element.classList.add('block2');
-            block2Element.setAttribute('class', 'box');
-            block2Element.innerText=i+1;
-            subBlockContainer2.appendChild(block2Element);
+            const box = document.createElement("div");
+            box.classList.add("box");
+            box.textContent = i + 1;
+            box.style.left = `${x}px`;
+            box.style.top = `${y}px`;
+
+            box.style.transform = `rotate(${angle * (180 / Math.PI) + 90}deg)`;
+            outputContainer1.appendChild(box);
+            
         }
 
-        block1Container.appendChild(subBlockContainer1);
-        block2Container.appendChild(subBlockContainer2);
+        const block2Count=document.getElementById('input2-'+(row+1)).value;
+        for (let i = 0; i < block2Count; i++) {
+           // -5 to -85 deg
+
+           const centerX = 500;
+            const centerY = 700; 
+            const angle = (Math.PI/2) * (i / (block2Count - 1)) - (Math.PI/2);
+            const x = centerX + radius * Math.cos(angle) - 20; 
+            const y = centerY + radius * Math.sin(angle) - 20; 
+
+            const box = document.createElement("div");
+            box.classList.add("box");
+            box.textContent = i + 1;
+            box.style.left = `${x}px`;
+            box.style.top = `${y}px`;
+
+            box.style.transform = `rotate(${angle * (180 / Math.PI) + 90}deg)`;
+            outputContainer2.appendChild(box);
+            
+        }
+
     }
-
-    outputContainer.appendChild(block1Container);
-    outputContainer.appendChild(block2Container);
-
+    
 }
 
 
 
-
 generateTable.addEventListener('click',generateInputColumnTable);
-generateLayout.addEventListener('click',generateLayoutTable);
+generateLayout.addEventListener('click',generateLayoutFromTable);
+
+
+
