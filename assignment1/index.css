@@ -1,6 +1,39 @@
+
+.main-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
 .input-row-container {
     display: flex;
     flex-direction: row;
+}
+
+.generate-table{
+    background-color: rgb(27, 27, 252);
+    color: white;
+    border: 0px;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 8px;
+    margin: 20px;
+}
+
+.generate-table:hover{
+    background-color: rgb(66, 66, 250);
+    cursor: pointer;
+}
+
+table{
+    margin-top: 20px;
+}
+
+table, td, th{
+    border: 1px solid black;
+    border-collapse: collapse;
 }
 
 tr{
@@ -9,17 +42,19 @@ tr{
 }
 
 
-
-.box {
-    width: 40px;
-    height: 40px;
-    background-color: steelblue;
+.generate-layout{
+    background-color: blue;
     color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    border-radius: 5px;
+    border: 0px;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 8px;
+    margin: 20px;
+}
+
+.generate-layout:hover{
+    background-color: rgb(66, 66, 250);
+    cursor: pointer;
 }
 
 
@@ -33,9 +68,14 @@ tr{
     margin-right: 50px;
 }
 
-
-
-
-
-
-
+.box {
+    width: 40px;
+    height: 40px;
+    background-color: steelblue;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    border-radius: 5px;
+}

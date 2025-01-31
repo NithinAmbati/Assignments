@@ -1,6 +1,7 @@
 
 
 const rowInput=document.getElementById('rows-count');
+const inputColumnContainer=document.getElementById("input-column-container")
 const inputColumnTable=document.getElementById('input-column-table');
 const generateTable=document.getElementById('generate-table');
 const generateLayout=document.getElementById('generate-layout');
@@ -10,8 +11,8 @@ const outputContainer2=document.getElementById('output-container2');
 
 
 const removepreviousChildNodes=()=> {
-    while(inputColumnTable.childNodes.length) {
-        inputColumnTable.removeChild(inputColumnTable.childNodes[0]);
+    while(inputColumnTable.childNodes.length>1) {
+        inputColumnTable.removeChild(inputColumnTable.childNodes[1]);
     }
 }
 
@@ -33,7 +34,21 @@ const generateInputColumnTable=()=> {
     removePreviousLayout();
 
     const rowsCount=parseInt(rowInput.value)
-    console.log(rowsCount)
+
+    const rowElement=document.createElement('tr');
+    const rowNumberElement=document.createElement('th');
+    const block1=document.createElement('th');
+    const block2=document.createElement('th');
+
+    rowNumberElement.innerHTML="Row"
+    block1.innerHTML="R1"
+    block2.innerHTML="R2"
+
+    rowElement.appendChild(rowNumberElement)
+    rowElement.appendChild(block1)
+    rowElement.appendChild(block2)
+    inputColumnTable.appendChild(rowElement)
+
     for(let i=0;i<rowsCount;i++) {
         const rowElement=document.createElement('tr');
         const rowNumberElement=document.createElement('td');
@@ -55,6 +70,9 @@ const generateInputColumnTable=()=> {
         rowElement.appendChild(block2);
         inputColumnTable.appendChild(rowElement);
     }
+
+    
+
 }
 
 
@@ -78,18 +96,21 @@ const generateLayoutFromTable=()=> {
         rightBlockMax=Math.max(block2Count, rightBlockMax);
     }
 
+    const max=Math.max(leftBlockMax, rightBlockMax)
+    const initialRadius=Math.max(500, 30*max);
+
     for(let row=0;row<rowsCount;row++) {
 
         const block1Count=document.getElementById('input1-'+(row+1)).value;
-        const radius = 400-row*50;  
+        const radius = initialRadius-row*50;  
 
         for (let i = 0; i <block1Count ; i++) {
-           // -175 to -105 deg
-            const centerX = 400;
-            const centerY = 700; 
-            const angle = (-Math.PI/2) * (i / (leftBlockMax - 1)) - (Math.PI/2); 
-            const x = centerX + radius * Math.cos(angle) - 20; 
-            const y = centerY + radius * Math.sin(angle) - 20; 
+           // -180 to -90 deg
+            const centerX = initialRadius+200;
+            const centerY = initialRadius+rowsCount*20+250; 
+            const angle = (-Math.PI/2) * (i / (max - 1)) - (Math.PI/2); 
+            const x = centerX + radius * Math.cos(angle); 
+            const y = centerY + radius * Math.sin(angle); 
 
             const box = document.createElement("div");
             box.classList.add("box");
@@ -104,13 +125,12 @@ const generateLayoutFromTable=()=> {
 
         const block2Count=document.getElementById('input2-'+(row+1)).value;
         for (let i = 0; i < block2Count; i++) {
-           // -5 to -85 deg
-
-           const centerX = 500;
-            const centerY = 700; 
-            const angle = (Math.PI/2) * (i / (rightBlockMax - 1)) - (Math.PI/2);
-            const x = centerX + radius * Math.cos(angle) - 20; 
-            const y = centerY + radius * Math.sin(angle) - 20; 
+           // 0 to -90 deg
+            const centerX = initialRadius+300;
+            const centerY = initialRadius+rowsCount*20+250; 
+            const angle = (Math.PI/2) * (i / (max - 1)) - (Math.PI/2);
+            const x = centerX + radius * Math.cos(angle); 
+            const y = centerY + radius * Math.sin(angle); 
 
             const box = document.createElement("div");
             box.classList.add("box");
