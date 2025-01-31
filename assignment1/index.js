@@ -8,6 +8,8 @@ const generateLayout=document.getElementById('generate-layout');
 const outputContainer1=document.getElementById('output-container1');
 const outputContainer2=document.getElementById('output-container2');
 
+generateLayout.classList.add("hide-button")
+
 
 
 const removepreviousChildNodes=()=> {
@@ -28,6 +30,8 @@ const removePreviousLayout=()=> {
 
 
 const generateInputColumnTable=()=> {
+
+    generateLayout.classList.remove("hide-button")
 
     removepreviousChildNodes();
 

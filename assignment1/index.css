@@ -71,11 +71,16 @@ tr{
 .box {
     width: 40px;
     height: 40px;
-    background-color: steelblue;
-    color: white;
+    background-color: white;
+    color: black;
     display: flex;
     justify-content: center;
     align-items: center;
     position: absolute;
-    border-radius: 5px;
+    border: 1px solid black;
 }
+
+.hide-button{
+    visibility: hidden;
+}
+
