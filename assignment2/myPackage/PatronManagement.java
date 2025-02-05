@@ -4,12 +4,14 @@ import java.util.List;
 
 
 public class PatronManagement {
+    // all the patrons are in users List
     private List<Patron> users;
 
     public PatronManagement() {
         this.users=new ArrayList<>();
     }
 
+    // Add new Patron here
     void addPatron(int id, String name) {
         Patron patron=new Patron(id, name);
         this.users.add(patron);
@@ -19,7 +21,7 @@ public class PatronManagement {
 
     void removePatron(int id) {
         for(int i=0;i<this.users.size();i++) {
-            if(this.users.get(i).getId()==id) {
+            if(this.users.get(i).getId()==id) { // if patron found with his id deleting the patron
                 UserChoices.patronMap.remove(this.users.get(i).getName());
                 this.users.remove(i);
                 System.out.println("User Deleted Succesfully.");
@@ -29,7 +31,7 @@ public class PatronManagement {
     }
 
     void displayPatrons() {
-        if(this.users.size()==0) {
+        if(this.users.size()==0) { // condition for No patrons.
             System.out.println("No Patrons Found.");
             return;
         }

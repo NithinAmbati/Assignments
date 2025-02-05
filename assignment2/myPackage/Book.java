@@ -1,4 +1,3 @@
-
 package myPackage;
 
 public class Book {
