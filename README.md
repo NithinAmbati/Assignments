@@ -1,8 +1,8 @@
-Assignment-1 (Seating Layout using HTML, CSS, JAVASCIPT)
+## Assignment-1 (Seating Layout using HTML, CSS, JAVASCIPT)
 
 
-Assignment-2 (Library Management using JAVA)
+## Assignment-2 (Library Management using JAVA)
 -> To run the Library Management go to assignement2 folder,
-  then run javac "myPackage/*.java" command 
-  then compile main file using command "javac Library.java"
-  then run using command "java Library"
+  then compile the package using [javac myPackage/*.java] 
+  then compile main file using [javac Library.java]
+  then run using ###java Library]
