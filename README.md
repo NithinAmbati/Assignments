@@ -11,8 +11,8 @@
 
 -> To run the Library Management go to assignement2 folder.
 
--> then compile the package using [javac myPackage/*.java] 
+-> then compile the package using  ### `javac myPackage/*.java`
 
--> then compile main file using [javac Library.java]
+-> then compile main file using ### `javac Library.java`
 
 -> then run using ### `java Library`
