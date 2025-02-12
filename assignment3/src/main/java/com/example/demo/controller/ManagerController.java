@@ -22,6 +22,9 @@ public class ManagerController {
         return managerService.getAllLeaves();
     }
 
+    @GetMapping("/get-all-pending-leaves")
+    public ResponseEntity<Map<String, Object>> getAllPendingLeaves() { return managerService.getAllPendingLeaves(); }
+
     @PutMapping("/update-leave/{leaveId}")
     public ResponseEntity<Map<String, Object>> updateLeave(@PathVariable String leaveId, @RequestBody Map<String, String> request) {
         String status=request.get("status");

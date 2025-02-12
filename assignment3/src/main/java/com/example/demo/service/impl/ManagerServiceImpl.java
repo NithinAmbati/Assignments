@@ -41,6 +41,21 @@ public class ManagerServiceImpl implements ManagerService {
         return ResponseEntity.status(200).body(response);
     }
 
+    public ResponseEntity<Map<String, Object>> getAllPendingLeaves() {
+        Map<String, Object> response=new HashMap<>();
+        try{
+            List<LeaveApplication> data=leaveApplicationRepo.findByStatus("PENDING");
+            response.put("message", "All the pending leaves retrieved successfully.");
+            response.put("data", data);
+
+        } catch (Exception e) {
+            response.put("message", e.getMessage());
+            return ResponseEntity.status(500).body(response);
+        }
+
+        return ResponseEntity.status(200).body(response);
+    }
+
     public ResponseEntity<Map<String, Object>> updateLeave(String leaveId, String status) {
         System.out.println(status);
         Map<String, Object> response=new HashMap<>();

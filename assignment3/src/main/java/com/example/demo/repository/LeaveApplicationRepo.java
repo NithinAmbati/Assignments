@@ -14,4 +14,5 @@ public interface LeaveApplicationRepo extends JpaRepository<LeaveApplication, St
     @Query(value = "select * from leave_applications where employee_id=?1", nativeQuery = true)
     List<LeaveApplication> findByEmployeeId(String employeeID);
 
+    List<LeaveApplication> findByStatus(String pending);
 }

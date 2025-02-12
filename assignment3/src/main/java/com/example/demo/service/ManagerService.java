@@ -9,5 +9,7 @@ import java.util.Map;
 public interface ManagerService {
     ResponseEntity<Map<String, Object>> getAllLeaves();
 
+    ResponseEntity<Map<String, Object>> getAllPendingLeaves();
+
     ResponseEntity<Map<String, Object>> updateLeave(String leaveId, String status);
 }
