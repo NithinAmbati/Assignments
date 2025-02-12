@@ -16,3 +16,17 @@
 -> then compile main file using ### `javac Library.java`
 
 -> then run using ### `java Library`
+
+## Assignment-3 (Leaves Tracker using Java Spring Boot) 
+
+-> To run the Leaves Tracker application go to assignment3 folder.
+
+-> Open it from Intellij IDEA.
+
+-> Verify the mysql-server is whether installed on your local machine.
+
+-> Create a database with the name `leaveTracker`.
+
+-> Install the dependecies.
+
+-> Then run the application, The application will be find the ### `http://localhost:8080`
