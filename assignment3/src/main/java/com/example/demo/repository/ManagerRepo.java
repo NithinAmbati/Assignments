@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface ManagerRepo extends JpaRepository<Manager, String> {
 
 
+    Manager findByEmail(String email);
 }
