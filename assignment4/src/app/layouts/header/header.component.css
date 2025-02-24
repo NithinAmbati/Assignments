@@ -1,0 +1,42 @@
+*,
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.header-main-container {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(0, 56, 121);
+  padding: 10px;
+}
+
+.header-version {
+  color: white;
+  text-align: end;
+  margin: 10px;
+  font-size: 18px;
+}
+
+.header-main-heading {
+  color: white;
+  font-weight: bold;
+  font-size: 35px;
+  text-align: center;
+}
+
+.header-main-heading-super-script {
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  margin-left: 8px;
+}
+
+.dropdowns-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 250px;
+  padding-right: 250px;
+}

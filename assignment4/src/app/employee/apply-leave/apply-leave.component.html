@@ -1,0 +1,21 @@
+<div class="apply-leave-main-container">
+  <h1 class="apply-leave-main-heading">Apply Leave here.</h1>
+  <form
+    class="apply-leave-form-container"
+    (submit)="onSubmitLeaveApplication($event)"
+  >
+    <label>Leave Type </label>
+    <select [value]="leaveType" (input)="onChangeLeaveType($event)">
+      <option *ngFor="let item of leaveTypesList" [value]="item.value">
+        {{ item.title }}
+      </option>
+    </select>
+    <label>Reason</label>
+    <input type="text" (input)="(startDate)" />
+    <label>Start Date </label>
+    <input type="date" />
+    <label>End Date</label>
+    <input type="date" (input)="(endDate)" />
+    <button class="leave-apply-btn" type="submit">Apply</button>
+  </form>
+</div>

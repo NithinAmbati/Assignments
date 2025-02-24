@@ -1,0 +1,14 @@
+<nav class="header-main-container">
+  <h1 class="header-version">Version 1.0.0</h1>
+  <h1 class="header-main-heading">
+    EDTEX<sup class="header-main-heading-super-script">Internal</sup>
+  </h1>
+
+  <div class="dropdowns-container">
+    <app-dropdown [dropdownList]="headersList" [title]="'LTS'"></app-dropdown>
+    <app-dropdown
+      [dropdownList]="headersList"
+      [title]="username"
+    ></app-dropdown>
+  </div>
+</nav>

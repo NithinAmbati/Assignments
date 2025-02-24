@@ -1,0 +1,27 @@
+<div class="user-login-main-container">
+  <h1 class="user-login-main-header">Login</h1>
+  <form class="user-login-form-container" (submit)="onSubmit($event)">
+    <label>Email : </label>
+    <input type="text" [value]="email" (input)="onChangeEmail($event)" />
+    <label>Password : </label>
+    <input
+      [type]="showPassword ? 'text' : 'password'"
+      [value]="password"
+      (input)="onChangePassword($event)"
+    />
+    <label>Role : </label>
+    <select [value]="role" (change)="onChangeRole($event)">
+      <option value="EMPLOYEE">Employee</option>
+      <option value="MANAGER">Manager</option>
+    </select>
+    <div class="show-password-container">
+      <input
+        type="checkbox"
+        (input)="onChangeShowPassword()"
+        [checked]="showPassword"
+      />
+      <label>show password</label>
+    </div>
+    <button class="login-btn" type="submit">Login</button>
+  </form>
+</div>

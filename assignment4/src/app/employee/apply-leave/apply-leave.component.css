@@ -1,0 +1,56 @@
+.apply-leave-main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+}
+
+.apply-leave-main-heading {
+  font-weight: 500;
+  font-size: 25px;
+  margin-bottom: 25px;
+}
+
+.apply-leave-form-container {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 1px 1px 10px 2px rgb(235, 235, 235);
+  padding: 50px;
+  border-radius: 10px;
+  min-width: 400px;
+}
+
+label {
+  color: gray;
+}
+
+input,
+select {
+  margin-bottom: 20px;
+}
+
+input {
+  padding: 15px;
+  border: gray solid 1px;
+  border-radius: 5px;
+}
+
+select {
+  background-color: rgb(215, 215, 215);
+  height: 50px;
+  padding-left: 10px;
+}
+
+.leave-apply-btn {
+  background-color: black;
+  color: white;
+  font-weight: 500;
+  border-radius: 8px;
+  border: none;
+  text-align: center;
+  width: fit-content;
+  padding: 10px 20px 10px 20px;
+  margin-top: 20px;
+  margin-left: auto;
+}

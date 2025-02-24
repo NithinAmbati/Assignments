@@ -1,0 +1,57 @@
+<div class="employee-home-main-container">
+  <h1 class="employee-home-main-heading">Your leaves this year</h1>
+
+  <h1 class="leaves-remain-text">
+    Leaves Remain :
+    <span
+      [ngClass]="
+        leavesRemaining === 1
+          ? 'waring'
+          : leavesRemaining === 0
+          ? 'completed'
+          : ''
+      "
+      >{{ leavesRemaining !== 0 ? leavesRemaining : "Completed" }}</span
+    >
+  </h1>
+
+  <table *ngIf="myLeavesList.length > 0">
+    <tr>
+      <th>Sno</th>
+      <th>Reason</th>
+      <th>Type</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+    <tbody>
+      <tr *ngFor="let item of myLeavesList; let ind = index">
+        <td>{{ ind + 1 }}</td>
+        <td>{{ item.reason }}</td>
+        <td>{{ item.leaveType }}</td>
+        <td>{{ item.startDate | date }}</td>
+        <td>{{ item.endDate | date }}</td>
+        <td
+          [ngClass]="
+            item.status === 'APPROVED'
+              ? 'approved-text'
+              : item.status === 'REJECTED'
+              ? 'rejected-text'
+              : 'pending-text'
+          "
+        >
+          {{ item.status }}
+        </td>
+        <td class="actions-container">
+          <i class="bi bi-pencil-square edit-icon"></i>
+          <i class="bi bi-trash3-fill delete-icon"></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="myLeavesList.length === 0" class="empty-view">
+    <h1>Empty</h1>
+  </div>
+</div>

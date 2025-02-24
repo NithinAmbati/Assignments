@@ -1,0 +1,100 @@
+.employee-home-main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50px;
+}
+
+.employee-home-main-heading {
+  font-size: 30px;
+  font-weight: 400;
+  color: rgb(0, 0, 0);
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.leaves-remain-text {
+  font-size: 22px;
+  font-weight: 400;
+  text-align: right;
+  width: 90vw;
+  margin-bottom: 10px;
+}
+
+.completed {
+  color: red;
+}
+
+.warning {
+  color: orange;
+}
+
+table {
+  width: 90vw;
+  max-width: 1500px;
+}
+
+table,
+tr,
+th,
+td {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  text-align: center;
+  padding: 20px;
+}
+
+tbody {
+  background-color: rgb(243, 243, 243);
+}
+
+.approved-text {
+  color: green;
+  font-weight: 600;
+}
+
+.rejected-text {
+  color: red;
+  font-weight: 600;
+}
+
+.pending-text {
+  color: blue;
+  font-weight: 600;
+}
+
+.empty-view {
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.actions-container {
+  display: flex;
+  border: none;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-icon {
+  color: blue;
+  border: 2px solid blue;
+  padding: 8px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.delete-icon {
+  color: red;
+  border: 2px solid red;
+  padding: 8px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+i:hover {
+  cursor: pointer;
+}

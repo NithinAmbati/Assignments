@@ -1,0 +1,67 @@
+.add-employee-main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+}
+
+.add-employee-main-heading {
+  color: black;
+  font-size: 25px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.add-employee-form-container {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  box-shadow: 2px 2px 8px 2px rgb(227, 226, 226);
+  padding: 40px;
+  border-radius: 10px;
+}
+
+label {
+  color: gray;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  border: 1px solid gray;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.add-employee-btn {
+  background-color: rgb(3, 3, 228);
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.add-employee-btn:hover {
+  background-color: rgb(51, 51, 255);
+}
+
+button {
+  align-self: center;
+  margin-top: 20px;
+}
+
+.show-password-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+}
+
+.show-password-container input {
+  margin-right: 5px;
+  cursor: pointer;
+}

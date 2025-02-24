@@ -1,0 +1,23 @@
+<div class="add-employee-main-container">
+  <h1 class="add-employee-main-heading">Add New Employee</h1>
+  <form class="add-employee-form-container" (submit)="onSubmit($event)">
+    <label>Employee name : </label>
+    <input type="text" [value]="username" (input)="onChangeUsername($event)" />
+    <label>Email : </label>
+    <input type="email" [value]="email" (input)="onChangeEmail($event)" />
+    <label>Password : </label>
+    <input
+      [type]="showPassword ? 'text' : 'password'"
+      [value]="password"
+      (input)="onChangePassword($event)"
+    />
+    <div class="show-password-container">
+      <input
+        type="checkbox"
+        id="show-password"
+        (input)="toggleShowPassword()"
+      /><label for="show-password">show password</label>
+    </div>
+    <button class="add-employee-btn" type="submit">Add Employee</button>
+  </form>
+</div>
