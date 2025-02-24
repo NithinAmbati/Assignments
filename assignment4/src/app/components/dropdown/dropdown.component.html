@@ -1,0 +1,25 @@
+<div
+  class="dropdown"
+  (mouseenter)="showDropdown()"
+  (mouseleave)="hideDropdown()"
+>
+  <button *ngIf="title === 'LTS'" class="dropdown-button">{{ title }}</button>
+  <ul
+    *ngIf="title === 'LTS'"
+    [ngClass]="dropdown ? 'dropdown-menu' : 'dropdown-hide'"
+  >
+    <li *ngFor="let item of dropdownList">
+      <a class="dropdown-item" [routerLink]="item.link">{{ item.title }}</a>
+    </li>
+  </ul>
+  <button *ngIf="title !== 'LTS'" class="dropdown-button2">
+    <i class="bi bi-person-circle"></i> {{ title }}
+    <i class="bi bi-caret-down-fill"></i>
+  </button>
+  <div
+    *ngIf="title !== 'LTS'"
+    [ngClass]="dropdown ? 'dropdown-menu' : 'dropdown-hide'"
+  >
+    <button class="dropdown-item" (click)="logout()">Logout</button>
+  </div>
+</div>
