@@ -67,7 +67,9 @@ public class Patron {
 
     @Override
     public String toString() {
-        return "Id: " + this.getId() + " | Name : " + this.getName() + " | Books Borrowed : " + this.booksBorrowed.size();
+        String ans= "Id: " + this.getId() + " | Name : " + this.getName() + " | Books Borrowed : ";
+        for(int i=0;i<booksBorrowed.size();i++) ans=ans+booksBorrowed.get(i).getTitle()+',';
+        return ans;
     }
 
 }

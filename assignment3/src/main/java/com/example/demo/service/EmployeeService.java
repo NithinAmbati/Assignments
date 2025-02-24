@@ -11,4 +11,6 @@ import java.util.Map;
 public interface EmployeeService {
     ResponseEntity<Map<String, Object>> addEmployee(Employee employee);
     ResponseEntity<Map<String, Object>> applyForLeave(String employeeId, LeaveApplication leaveApplication);
+    ResponseEntity<Map<String, Object>> deleteLeaveById(String leaveId);
+    ResponseEntity<Map<String, Object>> editLeave(String leaveID, LeaveApplication leave);
 }

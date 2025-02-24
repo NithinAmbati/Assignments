@@ -56,7 +56,7 @@ public class ManagerServiceImpl implements ManagerService {
         return ResponseEntity.status(200).body(response);
     }
 
-    public ResponseEntity<Map<String, Object>> updateLeave(String leaveId, String status) {
+    public ResponseEntity<Map<String, Object>> updateLeave(String leaveId, String status, String comment) {
         System.out.println(status);
         Map<String, Object> response=new HashMap<>();
         try{
@@ -80,19 +80,23 @@ public class ManagerServiceImpl implements ManagerService {
                 return ResponseEntity.status(200).body(response);
             }
 
+            if(status.equals("REJECT")) {
+                leaveApplication.setComment(comment);
+                leaveApplication.setStatus("REJECTED");
+                response.put("message", "Leave Rejected succesfully");
+                leaveApplicationRepo.save(leaveApplication);
+                return ResponseEntity.status(200).body(response);
+            }
+
             if(employee.getLeavesLimit()==0) {
                 response.put("message", "Leaves limit of the employee has been exhaused");
                 return ResponseEntity.status(200).body(response);
             }
 
 
-            if(status.equals("APPROVE")) {
-                leaveApplication.setStatus("APPROVED");
-                employee.setLeavesLimit(employee.getLeavesLimit()-1);
-            }
-            else {
-                leaveApplication.setStatus("REJECTED");
-            }
+            leaveApplication.setStatus("APPROVED");
+            employee.setLeavesLimit(employee.getLeavesLimit()-1);
+
 
             leaveApplicationRepo.save(leaveApplication);
             response.put("message", "Leave updated successfully for employee with employeeId : " + leaveApplication.getEmployeeId());

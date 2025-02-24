@@ -22,7 +22,7 @@ public class LeaveApplication {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
-    private String leaveType, reason, status;
+    private String leaveType, reason, status, comment;
     private Date startDate, endDate, applicationDate;
 
     @ManyToOne

@@ -5,6 +5,7 @@ import com.example.demo.model.LeaveApplication;
 import com.example.demo.repository.EmployeeRepo;
 import com.example.demo.repository.LeaveApplicationRepo;
 import com.example.demo.service.EmployeeService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 
+@Transactional
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
@@ -24,6 +26,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     public ResponseEntity<Map<String, Object>> addEmployee(Employee employee) {
         System.out.println(employee);
         Map<String, Object> response=new HashMap<>();
+
+        Employee checkForExist=employeeRepo.findByEmail(employee.getEmail());
+
+        if(checkForExist!=null) {
+            response.put("message", "User Already Exists.");
+            return ResponseEntity.status(400).body(response);
+        }
 
         // Initially while creating a user there will be no leaves. so keeping leave applications as empty list.
         if(employee.getLeaveApplications()==null) {
@@ -72,6 +81,10 @@ public class EmployeeServiceImpl implements EmployeeService {
                 return ResponseEntity.status(200).body(response);
             }
 
+            if(leaveApplication.getComment()==null) {
+                leaveApplication.setComment("");
+            }
+
             leaveApplication.setEmployee(employee);
             leaveApplicationRepo.save(leaveApplication);
             response.put("message", "Leave applied successfully");
@@ -89,13 +102,55 @@ public class EmployeeServiceImpl implements EmployeeService {
         Map<String, Object> response=new HashMap<>();
         try{
             List<LeaveApplication> data= leaveApplicationRepo.findByEmployeeId(employeeId);
+            Employee employee=employeeRepo.findById(employeeId).orElse(null);
             response.put("message", "Successfully retrieved Leaves data of employee with employeeId : " + employeeId);
             response.put("data", data);
+            assert employee != null;
+            response.put("leavesRemaining", employee.getLeavesLimit());
         } catch (Exception e) {
             response.put("message", e.getMessage());
             return ResponseEntity.status(500).body(response);
         }
         return ResponseEntity.status(200).body(response);
+    }
+
+    public ResponseEntity<Map<String, Object>> deleteLeaveById(String leaveId) {
+        Map<String, Object> response=new HashMap<>();
+        try{
+            LeaveApplication leave=leaveApplicationRepo.findById(leaveId).orElse(null);
+            if(leave==null) {
+                response.put("message" , "sdf");
+                return ResponseEntity.status(400).body(response);
+            }
+            if(leave.getStatus().equals("REJECTED") || leave.getStatus().equals("APPROVED")) {
+                response.put("message", "Leave cant be deleted");
+                return ResponseEntity.status(200).body(response);
+            }
+            leave.setEmployee(null);
+            leaveApplicationRepo.delete(leave);
+            response.put("message", "Deleted Successfully");
+            return ResponseEntity.status(200).body(response);
+        }
+        catch(Exception e) {
+            response.put("message", e.getMessage());
+            return ResponseEntity.status(500).body(response);
+        }
+    }
+
+    public ResponseEntity<Map<String, Object>> editLeave(String leaveId, LeaveApplication leave) {
+        Map<String, Object> response=new HashMap<>();
+
+        try {
+//            Employee employee=employeeRepo.findById(employeeId).orElse(null);
+//            leave.setEmployee(employee);
+            leaveApplicationRepo.save(leave);
+        } catch (Exception e) {
+            response.put("message", e.getMessage());
+            return ResponseEntity.status(500).body(response);
+        }
+
+        response.put("message", "Edited Succesfully");
+        return ResponseEntity.status(201).body(response);
     }
 
 }
