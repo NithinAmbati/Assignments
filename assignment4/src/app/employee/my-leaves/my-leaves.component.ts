@@ -15,6 +15,9 @@ export class MyLeavesComponent implements OnInit {
   leavesRemaining: number = 0;
 
   employeeId: string = '';
+  selectedLeave: any = null;
+  leaveId: any = null;
+  deleteModal: boolean = false;
 
   constructor(
     private employeeService: EmployeeService,
@@ -31,5 +34,55 @@ export class MyLeavesComponent implements OnInit {
       ),
       error: (error) => console.log(error.error.message),
     });
+
+    console.log(this.myLeavesList);
+  }
+
+  openEditModal(leave: any) {
+    this.selectedLeave = { ...leave };
+  }
+
+  closeEditModal(event?: Event) {
+    if (
+      event &&
+      event.target &&
+      (event.target as HTMLElement).classList.contains('modal-overlay')
+    ) {
+      this.selectedLeave = null;
+    } else {
+      this.selectedLeave = null;
+    }
+  }
+
+  onChangeSeletedLeaveData(event: Event, key: string) {
+    this.selectedLeave[key] = (event.target as HTMLInputElement).value;
+  }
+
+  saveChanges() {
+    console.log('Updated Leave:', this.selectedLeave);
+    this.employeeService.editLeave(this.selectedLeave).subscribe({
+      next: (res) => console.log(res),
+      error: (error) => console.log(error),
+    });
+    this.selectedLeave = null;
+  }
+
+  openDeleteModal(leaveId: any) {
+    console.log(leaveId);
+    this.leaveId = leaveId;
+    this.deleteModal = true;
+  }
+
+  closeDeleteModal() {
+    this.deleteModal = false;
+  }
+
+  deleteLeave() {
+    console.log('deleted');
+    this.employeeService.deleteLeave(this.leaveId).subscribe({
+      next: (res) => alert(res.message),
+      error: (error) => alert(error.error.message),
+    });
+    this.closeDeleteModal();
   }
 }

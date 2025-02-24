@@ -20,7 +20,6 @@ export class ApplyLeaveComponent {
 
   onChangeLeaveType(event: Event): void {
     this.leaveType = (event.target as HTMLInputElement).value;
-    console.log(this.leaveType);
   }
 
   onChangeReason(event: Event): void {
@@ -45,8 +44,8 @@ export class ApplyLeaveComponent {
         endDate: this.endDate,
       })
       .subscribe({
-        next: (res) => console.log(res),
-        error: (error) => console.log(error.error.message),
+        next: (res) => alert(res.message),
+        error: (error) => alert(error.message.message),
       });
   }
 }

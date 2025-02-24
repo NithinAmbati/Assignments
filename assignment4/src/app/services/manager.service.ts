@@ -36,10 +36,14 @@ export class ManagerService {
     );
   }
 
-  updateLeave(leaveId: string, status: string): Observable<any> {
+  updateLeave(
+    leaveId: string,
+    status: string,
+    comment: string
+  ): Observable<any> {
     return this.http.put(
       `${mainUrl}/api/manager/update-leave/${leaveId}`,
-      { status },
+      { status, comment },
       {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',

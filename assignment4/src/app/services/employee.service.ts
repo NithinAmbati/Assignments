@@ -18,9 +18,7 @@ export class EmployeeService {
   ) {
     this.headers = new HttpHeaders({
       'Content-type': 'application/json',
-      Authorization: `${
-        this.authService.getUserRole() === 'EMPLOYEE' ? 'employee' : 'manager'
-      }Token`,
+      Authorization: 'employeeToken',
     });
   }
 
@@ -43,14 +41,11 @@ export class EmployeeService {
     if (stringifiedJwtToken) {
       const jwtToken = JSON.parse(this.cookieService.get('jwtToken'));
       const employeeId = jwtToken[1];
-      const headers = new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: 'employeeToken',
-      });
+
       return this.http.post(
         `${mainUrl}/api/employee/apply-leave/${employeeId}`,
         leaveApplication,
-        { headers }
+        { headers: this.headers }
       );
     }
 
@@ -58,5 +53,21 @@ export class EmployeeService {
       `${mainUrl}/api/employee/apply-leave/${null}`,
       leaveApplication
     );
+  }
+
+  editLeave(leaveApplication: any): Observable<any> {
+    return this.http.put(
+      `${mainUrl}/api/employee/edit-leave/${leaveApplication.id}`,
+      leaveApplication,
+      {
+        headers: this.headers,
+      }
+    );
+  }
+
+  deleteLeave(leaveId: string): Observable<any> {
+    return this.http.delete(`${mainUrl}/api/employee/delete-leave/${leaveId}`, {
+      headers: this.headers,
+    });
   }
 }

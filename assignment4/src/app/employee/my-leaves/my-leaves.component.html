@@ -44,8 +44,14 @@
           {{ item.status }}
         </td>
         <td class="actions-container">
-          <i class="bi bi-pencil-square edit-icon"></i>
-          <i class="bi bi-trash3-fill delete-icon"></i>
+          <i
+            class="bi bi-pencil-square edit-icon"
+            (click)="openEditModal(item)"
+          ></i>
+          <i
+            class="bi bi-trash3-fill delete-icon"
+            (click)="openDeleteModal(item.id)"
+          ></i>
         </td>
       </tr>
     </tbody>
@@ -53,5 +59,72 @@
 
   <div *ngIf="myLeavesList.length === 0" class="empty-view">
     <h1>Empty</h1>
+  </div>
+
+  <!-- Modal View -->
+  <div
+    *ngIf="selectedLeave"
+    class="modal-overlay"
+    (click)="closeEditModal($event)"
+  >
+    <div class="modal-container" (click)="$event.stopPropagation()">
+      <h2>Edit Leave</h2>
+      <form class="modal-form-container">
+        <label>Reason:</label>
+        <input
+          type="text"
+          name="reason"
+          [value]="selectedLeave.reason"
+          (input)="onChangeSeletedLeaveData($event, 'reason')"
+          required
+        />
+
+        <label>Type:</label>
+        <input
+          type="text"
+          name="leaveType"
+          [value]="selectedLeave.leaveType"
+          (input)="onChangeSeletedLeaveData($event, 'leaveType')"
+          required
+        />
+
+        <label>Start Date:</label>
+        <input
+          type="date"
+          name="startDate"
+          [value]="selectedLeave.startDate"
+          (input)="onChangeSeletedLeaveData($event, 'startDate')"
+          required
+        />
+
+        <label>End Date:</label>
+        <input
+          type="date"
+          name="endDate"
+          [value]="selectedLeave.endDate"
+          (input)="onChangeSeletedLeaveData($event, 'endDate')"
+          required
+        />
+
+        <div class="modal-actions">
+          <button class="btn btn-secondary" (click)="closeEditModal()">
+            Cancel
+          </button>
+          <button class="btn btn-primary" (click)="saveChanges()">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div *ngIf="deleteModal" class="modal-overlay" (click)="closeDeleteModal()">
+    <div class="modal-container" (click)="$event.stopPropagation()">
+      <h4 class="delete-modal-heading">Do u want to Delete.?</h4>
+      <div class="delete-modal-buttons-container">
+        <button class="btn btn-secondary" (click)="closeDeleteModal()">
+          Cancel
+        </button>
+        <button class="btn btn-danger" (click)="deleteLeave()">Delete</button>
+      </div>
+    </div>
   </div>
 </div>
