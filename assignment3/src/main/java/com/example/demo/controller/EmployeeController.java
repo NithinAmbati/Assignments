@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.config.Auth;
+import com.example.demo.dto.EditLeaveApplicationDTO;
 import com.example.demo.model.LeaveApplication;
 import com.example.demo.service.impl.EmployeeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +47,7 @@ public class EmployeeController {
     }
 
     @PutMapping("/edit-leave/{leaveId}")
-    public ResponseEntity<Map<String, Object>> editLeave(@PathVariable String leaveId, @RequestBody LeaveApplication leave, @RequestHeader("Authorization") String authHeader) {
+    public ResponseEntity<Map<String, Object>> editLeave(@PathVariable String leaveId, @RequestBody EditLeaveApplicationDTO leave, @RequestHeader("Authorization") String authHeader) {
         ResponseEntity<Map<String, Object>> response=auth.checkForAuth(authHeader, "employeeToken");
         if(response!=null) return response;
         System.out.println(leave.toString());

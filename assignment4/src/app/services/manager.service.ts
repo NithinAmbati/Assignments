@@ -66,4 +66,10 @@ export class ManagerService {
       headers: this.headers,
     });
   }
+
+  getActiveLeaveApplications(): Observable<any> {
+    return this.http.get(`${mainUrl}/api/manager/get-active-leaves`, {
+      headers: this.headers,
+    });
+  }
 }

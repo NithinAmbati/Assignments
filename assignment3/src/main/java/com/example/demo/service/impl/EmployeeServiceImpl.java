@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.dto.EditLeaveApplicationDTO;
 import com.example.demo.model.Employee;
 import com.example.demo.model.LeaveApplication;
 import com.example.demo.repository.EmployeeRepo;
@@ -137,13 +138,20 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
     }
 
-    public ResponseEntity<Map<String, Object>> editLeave(String leaveId, LeaveApplication leave) {
+    public ResponseEntity<Map<String, Object>> editLeave(String leaveId, EditLeaveApplicationDTO leave) {
         Map<String, Object> response=new HashMap<>();
 
         try {
-//            Employee employee=employeeRepo.findById(employeeId).orElse(null);
-//            leave.setEmployee(employee);
-            leaveApplicationRepo.save(leave);
+            Employee employee=employeeRepo.findById(leave.getEmployeeId()).orElse(null);
+            LeaveApplication editedLeave=new LeaveApplication();
+            editedLeave.setEmployee(employee);
+            editedLeave.setId(leave.getId());
+            editedLeave.setStartDate(leave.getStartDate());
+            editedLeave.setEndDate(leave.getEndDate());
+            editedLeave.setStatus(leave.getStatus());
+            editedLeave.setReason(leave.getReason());
+            editedLeave.setLeaveType(leave.getLeaveType());
+            leaveApplicationRepo.save(editedLeave);
         } catch (Exception e) {
             response.put("message", e.getMessage());
             return ResponseEntity.status(500).body(response);

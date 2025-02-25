@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -30,8 +31,8 @@ public class ManagerController {
 
     @PostMapping("/add-employee")
     public ResponseEntity<Map<String, Object>> addNewEmployee(@RequestBody Employee employee, @RequestHeader("Authorization") String authHeader) {
-//        ResponseEntity<Map<String, Object>> response=auth.checkForAuth(authHeader, "employeeToken");
-//        if(response!=null) return response;
+        ResponseEntity<Map<String, Object>> response=auth.checkForAuth(authHeader, "managerToken");
+        if(response!=null) return response;
         return employeeService.addEmployee(employee);
     }
 
@@ -62,11 +63,11 @@ public class ManagerController {
 
     }
 
-//    @GetMapping("/get-leaves-overview")
-//    public ResponseEntity<List<Object>> getLeavesOverview(@RequestParam Map<String, String> queryParams) {
-//        String startDate= queryParams.getOrDefault("startDate", null);
-//        String applicationDate=queryParams.getOrDefault("applicationDate", null);
-//        String employeeName=queryParams.getOrDefault("username")
-//    }
+    @GetMapping("/get-active-leaves")
+    public ResponseEntity<Map<String, Object>> getActiveLeaves(@RequestHeader("Authorization") String authHeader) {
+        ResponseEntity<Map<String, Object>> response=auth.checkForAuth(authHeader, "managerToken");
+        if(response!=null) return response;
+        return managerService.getActiveLeaves(new Date());
+    }
 
 }

@@ -1,1 +1,34 @@
-<p>overview works!</p>
+<div class="main-container">
+  <h1>Leaves Overview</h1>
+  <select [value]="selectedLeavesType" (input)="onChangeSelectBar($event)">
+    <option value="ALL">All</option>
+    <option value="ACTIVE">Active</option>
+  </select>
+
+  <div *ngIf="leaveApplications.length > 0">
+    <table>
+      <tr>
+        <th>Employee ID</th>
+        <th>Employee Name</th>
+        <th>Reason</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Status</th>
+      </tr>
+      <tbody *ngFor="let leaveApplication of leaveApplications">
+        <tr>
+          <td>{{ leaveApplication.employeeId }}</td>
+          <td>{{ leaveApplication.employeeName }}</td>
+          <td>{{ leaveApplication.reason }}</td>
+          <td>{{ leaveApplication.startDate | date }}</td>
+          <td>{{ leaveApplication.endDate | date }}</td>
+          <td>{{ leaveApplication.status }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="leaveApplications.length === 0">
+    <h1>Empty</h1>
+  </div>
+</div>

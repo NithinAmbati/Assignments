@@ -19,7 +19,5 @@ export const authGuard: CanActivateFn = (route, state) => {
     return false;
   }
 
-  console.log('adf');
-
   return true;
 };

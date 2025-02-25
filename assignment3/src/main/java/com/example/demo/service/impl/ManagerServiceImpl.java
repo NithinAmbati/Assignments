@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -109,6 +110,23 @@ public class ManagerServiceImpl implements ManagerService {
         return ResponseEntity.status(200).body(response);
     }
 
+    public ResponseEntity<Map<String, Object>> getActiveLeaves(Date todayDate) {
+        Map<String, Object> response=new HashMap<>();
+        try{
+            List<LeaveApplication> data=leaveApplicationRepo.activeLeaves(todayDate);
+            response.put("data" , data);
+            response.put("message", "Active leaves Data retrieved successfully.");
+            return ResponseEntity.status(200).body(response);
+        } catch (Exception e) {
+            response.put("message", e.getMessage());
+            return ResponseEntity.status(500).body(response);
+        }
+    }
 
+
+    public ResponseEntity<Map<String, Object>> adf() {
+        Map<String, Object> response=new HashMap<>();
+        return ResponseEntity.status(200).body(response);
+    }
 
 }
