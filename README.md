@@ -29,4 +29,14 @@
 
 -> Install the dependecies.
 
--> Then run the application, The application will be find the ### `http://localhost:8080`
+-> Then run the application, The application will be find at the ### `http://localhost:8080`
+
+## Assignment-4 (Leaves Tracker using Angular)
+
+-> To run the Leaves Tracker application go to assignment4 folder.
+
+-> Open it through VsCode.
+
+-> Run the application using ### `ng serve`
+
+-> The application will be find at the ### `http://localhost:8080`
