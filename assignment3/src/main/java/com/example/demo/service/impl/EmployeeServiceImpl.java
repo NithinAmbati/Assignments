@@ -128,7 +128,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                 return ResponseEntity.status(200).body(response);
             }
             leave.setEmployee(null);
-            leaveApplicationRepo.delete(leave);
+            leaveApplicationRepo.deleteById(leaveId);
             response.put("message", "Deleted Successfully");
             return ResponseEntity.status(200).body(response);
         }

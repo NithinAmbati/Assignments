@@ -28,7 +28,7 @@ public class Employee {
 
     private int leavesLimit=5;
 
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<LeaveApplication> leaveApplications;
 
 
