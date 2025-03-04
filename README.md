@@ -29,4 +29,22 @@
 
 -> Install the dependecies.
 
--> Then run the application, The application will be find the ### `http://localhost:8080`
+-> Then run the application, The application will be find at the ### `http://localhost:8080`
+
+## Assignment-4 (Leaves Tracker using Angular)
+
+-> To run the Leaves Tracker application go to assignment4 folder and also assignment3 also needed for backend.
+
+-> First check mysql connectivity and create a user in manager table to access the website.
+
+-> Open it through VsCode.
+
+-> Run the application using ### `ng serve`
+
+-> The application will be find at the ### `http://localhost:8080`
+
+-> Login with manager role with credentials set before.
+
+-> Then there will be a section to add a employee , there you can add employees in the organization.
+
+-> The u can also visit the employees interface using a employee credentials.
